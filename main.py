@@ -2,6 +2,15 @@ import pygame
 import random
 import tiles
 import Timer
+import os
+import sys
+
+
+def resource_path(path: str) -> str:
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        return os.path.join(getattr(sys, "_MEIPASS"), os.path.normpath(path))
+    else:
+        return os.path.join(os.path.dirname(__file__), os.path.normpath(path))
 
 
 class Game:
@@ -11,11 +20,11 @@ class Game:
         self.font = pygame.font.SysFont("Times New Roman", 40)
         self.small_font = pygame.font.SysFont("Times New Roman", 20)
         pygame.display.set_caption("Piano Tiles")
-        pygame.display.set_icon(pygame.image.load("Images\\Icon.png"))
+        pygame.display.set_icon(pygame.image.load(resource_path("Images/Icon.png")))
         self.screen = pygame.display.set_mode((285, 510), pygame.RESIZABLE)
-        self.enter_full_screen_icon = pygame.image.load("Images\\Enter Fullscreen Icon.png").convert_alpha()
-        self.exit_full_screen_icon = pygame.image.load("Images\\Exit Fullscreen Icon.png").convert_alpha()
-        self.menu_icon = pygame.image.load("Images\\Menu.png").convert_alpha()
+        self.enter_full_screen_icon = pygame.image.load(resource_path("Images/Enter Fullscreen Icon.png")).convert_alpha()
+        self.exit_full_screen_icon = pygame.image.load(resource_path("Images/Exit Fullscreen Icon.png")).convert_alpha()
+        self.menu_icon = pygame.image.load(resource_path("Images/Menu.png")).convert_alpha()
         self.window_width = 285
         self.window_height = 510
         self.screen_width = 285
